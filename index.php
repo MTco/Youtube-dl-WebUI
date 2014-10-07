@@ -28,6 +28,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="<?php echo $mainPage; ?>">Download</a></li>
                     <li><a href="<?php echo $listPage; ?>">List of videos</a></li>
+					<li><a href="<?php echo $MP3listPage; ?>">List of MP3</a></li>
                 </ul>
             </div>
         </div>
@@ -37,13 +38,23 @@
     if(isset($_GET['url']) && !empty($_GET['url']) && $_SESSION['logged'] == 1)
     {
         $url = $_GET['url'];
-        $cmd = 'youtube-dl -o ' . escapeshellarg($folder.'%(title)s-%(uploader)s.%(ext)s') . ' ' . escapeshellarg($url) . ' 2>&1';
+        if (isset($_GET['mp3']) && $_GET['mp3'] == 'mp3')
+			$cmd = 'youtube-dl-mp3 '. escapeshellarg($url) . ' '. escapeshellarg($folder) . ' ' . escapeshellarg($MP3folder) . ' > /dev/null 2>&1 &';
+		else
+			$cmd = 'youtube-dl-mp3 '. escapeshellarg($url) . ' '. escapeshellarg($folder) . '  > /dev/null 2>&1 &';
+			
         exec($cmd, $output, $ret);
         if($ret == 0)
         {
             echo '<div class="alert alert-success">
-                    <strong>Download succeed !</strong> <a href="'.$listPage.'" class="alert-link">Link to the video</a>.
+                    <strong>Added to download queue !</strong> <a href="'.$listPage.'" class="alert-link">Check the video list to see result in a few minutes.</a>.
                 </div>';
+				
+			if (isset($_GET['mp3']) && $_GET['mp3'] == 'mp3')
+			{
+				echo '<div class="alert alert-success">
+						<strong>Converting to MP3 in the background </strong></div>'; 
+			}
         }
         else{
             echo '<div class="alert alert-dismissable alert-danger">
@@ -64,11 +75,11 @@
                             <input class="form-control" id="url" name="url" placeholder="Link" type="text">
                         </div>
                         <div class="col-lg-2">
-                        <button type="submit" class="btn btn-primary">Download</button>
+                        <button type="submit" class="btn btn-primary">Add to download queue</button>
                         </div>
                     </div>
-                    
                 </fieldset>
+						<input type="checkbox" name="mp3" value="mp3"> Convert to mp3<br>
             </form>
             <br>
 
@@ -79,7 +90,8 @@
                         <div class="panel-heading"><h3 class="panel-title">Info</h3></div>
                         <div class="panel-body">
                             <p>Free space : <?php if(file_exists($folder)){ echo human_filesize(disk_free_space($folder),1)."o";} else {echo "Folder not found";} ?></b></p>
-                            <p>Download folder : <?php echo $folder ;?></p>
+                            <p>Download folder Video : <?php echo $folder ;?></p>
+                            <p>Download folder MP3 : <?php echo $MP3folder ;?></p>
                         </div>
                     </div>
                 </div>
@@ -120,7 +132,8 @@
         <footer>
             <div class="well text-center">
                 <p><a href="https://github.com/p1rox/Youtube-dl-WebUI" target="_blank">Fork me on Github</a></p>
-                <p>Created by <a href="https://twitter.com/p1rox" target="_blank">@p1rox</a> - Web Site : <a href="http://p1rox.fr" target="_blank">p1rox.fr</a></p>
+                <p>Created by <a href="https://twitter.com/p1rox" target="_blank">@p1rox</a> - Web Site : <a href="http://p1rox.fr" target="_blank">p1rox.fr</a></p>               <p>Extended by TomGrun</p>
+ 
             </div>
         </footer>
     </body>

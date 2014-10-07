@@ -7,9 +7,11 @@ $mainPage = "index.php";
 
 // -> with "/" <- at the end. Directory where you videos are downloaded
 $folder = "videos/"; 
+$MP3folder = "mp3/";
 
 //Rename it only if you change list.php to myvideos.php for example
 $listPage = "list.php";
+$MP3listPage = "mp3list.php";
 
 // Enable password to access the panel
 // 1 -> enable 0 -> disable
