@@ -7,6 +7,7 @@ class Downloader
 	private $audio_only = false;
 	private $errors = [];
 	private $download_path = "";
+	private $log_path = "";
 
 	public function __construct($post, $audio_only)
 	{
@@ -20,6 +21,11 @@ class Downloader
 		else
 		{
 			$this->download_path = dirname(__DIR__).'/'.$this->config["outputFolder"];
+		}
+		
+		if($this->config["logs"])
+		{
+			$this->log_path = dirname(__DIR__).'/'.$this->config["logs"];
 		}
 
 		$this->audio_only = $audio_only;
@@ -187,6 +193,24 @@ class Downloader
 				$this->errors[] = "Output folder isn't writable !";
 			}
 		}
+		
+		if(!is_dir($this->log_path))
+		{
+			//Folder doesn't exist
+			if(!mkdir($this->log_path, 0775))
+			{
+				$this->errors[] = "Output folder doesn't exist and creation failed !";
+			}
+		}
+		else
+		{
+			//Exists but can I write ?
+			if(!is_writable($this->log_path))
+			{
+				$this->errors[] = "Output folder isn't writable !";
+			}
+		}
+		
 	}
 
 	private function do_download()
