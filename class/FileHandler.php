@@ -62,30 +62,26 @@ class FileHandler
 	public function delete($id)
 	{
 		$folder = dirname(__DIR__).'/'.$this->config["outputFolder"].'/';
-		$i = 0;
 
 		foreach(glob($folder.'*.*', GLOB_BRACE) as $file)
 		{
-			if($i == $id)
+			if(sha1(str_replace($folder, "", $file)) == $id)
 			{
 				unlink($file);
 			}
-			$i++;
 		}
 	}
 
 	public function deleteLog($id)
 	{
 		$folder = dirname(__DIR__).'/'.$this->config["logFolder"].'/';
-		$i = 0;
 
 		foreach(glob($folder.'*.txt', GLOB_BRACE) as $file)
 		{
-			if($i == $id)
+			if(sha1(str_replace($folder, "", $file)) == $id)
 			{
 				unlink($file);
 			}
-			$i++;
 		}
 	}
 
