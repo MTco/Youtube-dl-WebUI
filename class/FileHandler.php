@@ -3,8 +3,6 @@
 class FileHandler
 {
 	private $config = [];
-	private $videos_ext = ".{avi,mp4,flv,unknown_video}";
-	private $musics_ext = ".{mp3,ogg,m4a}";
 
 	public function __construct()
 	{
@@ -36,19 +34,6 @@ class FileHandler
 	{
 		$folder = dirname(__DIR__).'/'.$this->config["outputFolder"].'/';
 		$i = 0;
-
-		if($type === 'v')
-		{
-			$exts = $this->videos_ext;
-		}
-		elseif($type === 'm')
-		{
-			$exts = $this->musics_ext;
-		}
-		else
-		{
-			return;
-		}
 
 		foreach(glob($folder.'*'.$exts, GLOB_BRACE) as $file)
 		{
