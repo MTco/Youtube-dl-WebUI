@@ -182,7 +182,7 @@ class Downloader
 			//Folder doesn't exist
 			if(!mkdir($this->download_path, 0775))
 			{
-				$this->errors[] = "Output folder doesn't exist and creation failed !";
+				$this->errors[] = "Output folder doesn't exist and creation failed! (".$this->download_path.")";
 			}
 		}
 		else
@@ -190,7 +190,7 @@ class Downloader
 			//Exists but can I write ?
 			if(!is_writable($this->download_path))
 			{
-				$this->errors[] = "Output folder isn't writable !";
+				$this->errors[] = "Output folder isn't writable! (".$this->download_path.")";
 			}
 		}
 		
@@ -199,7 +199,7 @@ class Downloader
 			//Folder doesn't exist
 			if(!mkdir($this->log_path, 0775))
 			{
-				$this->errors[] = "Output folder doesn't exist and creation failed !";
+				$this->errors[] = "Log folder doesn't exist and creation failed! (".$this->log_path.")";
 			}
 		}
 		else
@@ -207,7 +207,7 @@ class Downloader
 			//Exists but can I write ?
 			if(!is_writable($this->log_path))
 			{
-				$this->errors[] = "Output folder isn't writable !";
+				$this->errors[] = "Log folder isn't writable! (".$this->log_path.")";
 			}
 		}
 		
