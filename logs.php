@@ -15,7 +15,7 @@
 
 	if($session->is_logged_in() && isset($_GET["delete"]))
 	{
-		$file->deleteLog($_GET["delete"], $t);
+		$file->deleteLog($_GET["delete"]);
 		header("Location: logs.php");
 	}
 

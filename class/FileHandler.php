@@ -59,7 +59,7 @@ class FileHandler
 		return $files;
 	}
 
-	public function delete($id, $type)
+	public function delete($id)
 	{
 		$folder = dirname(__DIR__).'/'.$this->config["outputFolder"].'/';
 		$i = 0;
@@ -74,7 +74,7 @@ class FileHandler
 		}
 	}
 
-	public function deleteLog($id, $type)
+	public function deleteLog($id)
 	{
 		$folder = dirname(__DIR__).'/'.$this->config["logFolder"].'/';
 		$i = 0;

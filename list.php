@@ -15,7 +15,7 @@
 
 	if($session->is_logged_in() && isset($_GET["delete"]))
 	{
-		$file->delete($_GET["delete"], $t);
+		$file->delete($_GET["delete"]);
 		header("Location: list.php");
 	}
 
