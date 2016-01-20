@@ -30,12 +30,51 @@ class FileHandler
 		return $files;
 	}
 
+	public function listLogs()
+	{
+		$files = [];
+		
+		if(!$this->config["log"])
+			return;
+
+		if(!$this->outuput_folder_exists())
+			return;
+
+		$folder = dirname(__DIR__).'/'.$this->config["logFolder"].'/';
+
+		foreach(glob($folder.'*.log', GLOB_BRACE) as $file)
+		{
+			$content = [];
+			$content["name"] = str_replace($folder, "", $file);
+			$content["size"] = $this->to_human_filesize(filesize($file));
+			
+			$files[] = $content;
+		}
+
+		return $files;
+	}
+
 	public function delete($id, $type)
 	{
 		$folder = dirname(__DIR__).'/'.$this->config["outputFolder"].'/';
 		$i = 0;
 
-		foreach(glob($folder.'*'.$exts, GLOB_BRACE) as $file)
+		foreach(glob($folder.'*.*', GLOB_BRACE) as $file)
+		{
+			if($i == $id)
+			{
+				unlink($file);
+			}
+			$i++;
+		}
+	}
+
+	public function deleteLog($id, $type)
+	{
+		$folder = dirname(__DIR__).'/'.$this->config["logFolder"].'/';
+		$i = 0;
+
+		foreach(glob($folder.'*.log', GLOB_BRACE) as $file)
 		{
 			if($i == $id)
 			{

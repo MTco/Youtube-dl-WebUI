@@ -23,9 +23,9 @@ class Downloader
 			$this->download_path = dirname(__DIR__).'/'.$this->config["outputFolder"];
 		}
 		
-		if($this->config["logs"])
+		if($this->config["log"])
 		{
-			$this->log_path = dirname(__DIR__).'/'.$this->config["logs"];
+			$this->log_path = dirname(__DIR__).'/'.$this->config["logFolder"];
 		}
 
 		$this->audio_only = $audio_only;
@@ -230,9 +230,9 @@ class Downloader
 		}
 
 		$cmd .= " --restrict-filenames"; // --restrict-filenames is for specials chars
-		if($this->config["logs"])
+		if($this->config["log"])
 		{
-			$cmd .= " > ".$this->config["logs"]."/$(date  +\"%Y-%m-%d_%H-%M-%S-%N\").log";
+			$cmd .= " > ".$this->config["logFolder"]."/$(date  +\"%Y-%m-%d_%H-%M-%S-%N\").log";
 		}
 		else
 		{
