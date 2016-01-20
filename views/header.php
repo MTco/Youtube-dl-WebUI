@@ -21,6 +21,11 @@
 					<li><a href="./">Download</a></li>
 					<li><a href="./list.php">List of files</a></li>
 					<?php
+						if ($file->is_log_enabled() {
+							echo '<li><a href="./logs.php">Logs</a></li>';
+						}
+					?>
+					<?php
 						if($session->is_logged_in())
 						{
 					?>

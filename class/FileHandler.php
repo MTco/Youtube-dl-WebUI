@@ -29,6 +29,11 @@ class FileHandler
 
 		return $files;
 	}
+	
+	public function is_log_enabled()
+	{
+		return !!($this->config["log"]);
+	}
 
 	public function listLogs()
 	{
@@ -114,6 +119,12 @@ class FileHandler
 	{
 		return $this->config["outputFolder"];
 	}
+
+	public function get_logs_folder()
+	{
+		return $this->config["logFolder"];
+	}
+}
 }
 
 ?>
