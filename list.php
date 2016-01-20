@@ -11,20 +11,7 @@
 		header("Location: login.php");
 	}
 
-	if(isset($_GET['type']) && !empty($_GET['type']))
-	{
-		$t = $_GET['type'];
-		if($t === 'v')
-		{
-			$type = "videos";
-			$files = $file->listVideos();
-		}
-		elseif($t === 'm')
-		{
-			$type = "musics";
-			$files = $file->listMusics();
-		}
-	}
+	$files = $file->listFiles();
 
 	if($session->is_logged_in() && isset($_GET["delete"]))
 	{
@@ -39,7 +26,7 @@
 			if(!empty($files))
 			{
 		?>
-			<h2>List of available <?php echo $type ?> :</h2>
+			<h2>List of available files:</h2>
 			<table class="table table-striped table-hover ">
 				<thead>
 					<tr>
@@ -71,14 +58,7 @@
 			}
 			else
 			{
-				if(isset($t) && ($t === 'v' || $t === 'm'))
-				{
-					echo "<br><div class=\"alert alert-warning\" role=\"alert\">No $type !</div>";
-				}
-				else
-				{
-					echo "<br><div class=\"alert alert-warning\" role=\"alert\">No such type !</div>";
-				}
+				echo "<br><div class=\"alert alert-warning\" role=\"alert\">No files!</div>";
 			}
 		?>
 			<br/>

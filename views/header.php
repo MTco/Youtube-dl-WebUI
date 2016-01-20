@@ -19,8 +19,7 @@
 			<div class="navbar-collapse collapse navbar-responsive-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="./">Download</a></li>
-					<li><a href="./list.php?type=v">List of videos</a></li>
-					<li><a href="./list.php?type=m">List of songs</a></li>
+					<li><a href="./list.php">List of files</a></li>
 					<?php
 						if($session->is_logged_in())
 						{

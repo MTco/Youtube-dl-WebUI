@@ -11,46 +11,25 @@ class FileHandler
 		$this->config = require dirname(__DIR__).'/config/config.php';
 	}
 
-	public function listVideos()
+	public function listFiles()
 	{
-		$videos = [];
+		$files = [];
 
 		if(!$this->outuput_folder_exists())
 			return;
 
 		$folder = dirname(__DIR__).'/'.$this->config["outputFolder"].'/';
 
-		foreach(glob($folder.'*'.$this->videos_ext, GLOB_BRACE) as $file)
+		foreach(glob($folder.'*.*', GLOB_BRACE) as $file)
 		{
-			$video = [];
-			$video["name"] = str_replace($folder, "", $file);
-			$video["size"] = $this->to_human_filesize(filesize($file));
+			$content = [];
+			$content["name"] = str_replace($folder, "", $file);
+			$content["size"] = $this->to_human_filesize(filesize($file));
 			
-			$videos[] = $video;
+			$files[] = $content;
 		}
 
-		return $videos;
-	}
-
-	public function listMusics()
-	{
-		$musics = [];
-
-		if(!$this->outuput_folder_exists())
-			return;
-
-		$folder = dirname(__DIR__).'/'.$this->config["outputFolder"].'/';
-
-		foreach(glob($folder.'*'.$this->musics_ext, GLOB_BRACE) as $file)
-		{
-			$music = [];
-			$music["name"] = str_replace($folder, "", $file);
-			$music["size"] = $this->to_human_filesize(filesize($file));
-			
-			$musics[] = $music;
-		}
-
-		return $musics;
+		return $files;
 	}
 
 	public function delete($id, $type)
