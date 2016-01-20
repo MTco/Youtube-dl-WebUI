@@ -125,6 +125,5 @@ class FileHandler
 		return $this->config["logFolder"];
 	}
 }
-}
 
 ?>
