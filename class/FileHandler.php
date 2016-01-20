@@ -3,7 +3,7 @@
 class FileHandler
 {
 	private $config = [];
-	private $videos_ext = ".{avi,mp4,flv}";
+	private $videos_ext = ".{avi,mp4,flv,unknown_video}";
 	private $musics_ext = ".{mp3,ogg,m4a}";
 
 	public function __construct()
