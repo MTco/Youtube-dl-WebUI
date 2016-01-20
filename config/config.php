@@ -8,7 +8,7 @@ return array(
 	"password" => "63a9f0ea7bb98050796b649e85481845",
 	"outputFolder" => "downloads",
 	"extracter" => "avconv",
-	"log" => true,
+	"log" => "logs",
 	"max_dl" => 3);
 
 ?>

@@ -206,7 +206,15 @@ class Downloader
 		}
 
 		$cmd .= " --restrict-filenames"; // --restrict-filenames is for specials chars
-		$cmd .= " > /dev/null & echo $!";
+		if($this->config["logs"])
+		{
+			$cmd .= " > ".$this->config["logs"]."/$(date  +\"%Y-%m-%d_%H-%M-%S-%N\").log";
+		}
+		else
+		{
+			$cmd .= " > /dev/null ";
+		}
+		$cmd .= " & echo $!";
 
 		shell_exec($cmd);
 	}
