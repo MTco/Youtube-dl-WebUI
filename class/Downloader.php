@@ -232,7 +232,7 @@ class Downloader
 		$cmd .= " --restrict-filenames"; // --restrict-filenames is for specials chars
 		if($this->config["log"])
 		{
-			$cmd .= " > ".$this->config["logFolder"]."/$(date  +\"%Y-%m-%d_%H-%M-%S-%N\").log";
+			$cmd .= " > ".$this->config["logFolder"]."/$(date  +\"%Y-%m-%d_%H-%M-%S-%N\").txt";
 		}
 		else
 		{

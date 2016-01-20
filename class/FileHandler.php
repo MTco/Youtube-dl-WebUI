@@ -42,7 +42,7 @@ class FileHandler
 
 		$folder = dirname(__DIR__).'/'.$this->config["logFolder"].'/';
 
-		foreach(glob($folder.'*.log', GLOB_BRACE) as $file)
+		foreach(glob($folder.'*.txt', GLOB_BRACE) as $file)
 		{
 			$content = [];
 			$content["name"] = str_replace($folder, "", $file);
@@ -74,7 +74,7 @@ class FileHandler
 		$folder = dirname(__DIR__).'/'.$this->config["logFolder"].'/';
 		$i = 0;
 
-		foreach(glob($folder.'*.log', GLOB_BRACE) as $file)
+		foreach(glob($folder.'*.txt', GLOB_BRACE) as $file)
 		{
 			if($i == $id)
 			{
