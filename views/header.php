@@ -5,7 +5,7 @@
 		<title>Youtube-dl WebUI</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="screen">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="./custom.css">
+		<link rel="stylesheet" href="./css/custom.css">
 	</head>
 	<body>
 		<div class="navbar navbar-default">
