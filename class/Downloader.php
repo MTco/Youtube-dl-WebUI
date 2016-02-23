@@ -39,11 +39,11 @@ class Downloader
 		}
 		if ($outfilename)
 		{
-			$this>outfilename = $outfilename;
+			$this->outfilename = $outfilename;
 		}
 		if ($vformat)
 		{
-			$this>vformat = $vformat;
+			$this->vformat = $vformat;
 		}
 			
 
