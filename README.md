@@ -1,7 +1,7 @@
 # Youtube-dl WebUI
 
-![Main](https://github.com/p1rox/Youtube-dl-WebUI/raw/master/img/main.png)
-![List](https://github.com/p1rox/Youtube-dl-WebUI/raw/master/img/list.png)
+![Main](https://github.com/timendum/Youtube-dl-WebUI/raw/master/img/main.png)
+![List](https://github.com/timendum/Youtube-dl-WebUI/raw/master/img/list.png)
 
 ## Description
 Youtube-dl WebUI is a small web interface for youtube-dl. It allows you to host your own video downloader. 
@@ -42,7 +42,7 @@ echo -n root|md5sum| sed 's/ .*//'
 
 ## License
 
-Copyright (c) 2014 Armand VIGNAT
+Copyright (c) 2016 Timendum
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
