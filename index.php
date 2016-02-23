@@ -117,6 +117,8 @@
 							<p><a href="http://rg3.github.io/youtube-dl/supportedsites.html">Here's</a> a list of the supported sites</p>
 							<p><b>How can I download the video on my computer?</b></p>
 							<p>Go to <a href="./list.php?type=v">List of videos</a> -> choose one -> right click on the link -> "Save target as ..." </p>
+							<p><b>What's Filename or Format field?</b></p>
+							<p>They are optional, see the official documentation about <a href=".https://github.com/rg3/youtube-dl/blob/master/README.md#format-selection">Format selection</a> or <a href="https://github.com/rg3/youtube-dl/blob/master/README.md#output-template">Output template</a> </p>
 						</div>
 					</div>
 				</div>
