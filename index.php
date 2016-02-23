@@ -27,13 +27,13 @@
 				$audio_only = true;
 			}
 			
-			$outfilename = ''
+			$outfilename = '';
 			if(isset($_POST['outfilename']) && !empty($_POST['outfilename']))
 			{
 				$outfilename = $_POST['outfilename'];
 			}
 			
-			$vformat = ''
+			$vformat = '';
 			if(isset($_POST['vformat']) && !empty($_POST['vformat']))
 			{
 				$vformat = $_POST['vformat'];
