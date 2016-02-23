@@ -37,7 +37,7 @@
 								{
 									foreach(Downloader::get_current_background_jobs() as $key)
 									{
-										echo "<li title=\"".htmlspecialchars($key['cmd'])."\">Elapsed time : ".$key['time']."</li>";
+										echo "<li><a  href=\"#\" title=\"".htmlspecialchars($key['cmd'])."\">Elapsed time : ".$key['time']."</a></li>";
 									}
 
 									echo "<li class=\"divider\"></li>";
