@@ -8,8 +8,10 @@ class Downloader
 	private $errors = [];
 	private $download_path = "";
 	private $log_path = "";
+	private $outfilename = "%(title)s-%(uploader)s.%(ext)s";
+	private $vformat = false;
 
-	public function __construct($post, $audio_only)
+	public function __construct($post, $audio_only, $outfilename=False, $vformat=False)
 	{
 		$this->config = require dirname(__DIR__).'/config/config.php';
 
@@ -35,6 +37,15 @@ class Downloader
 		{
 			return;
 		}
+		if ($outfilename)
+		{
+			$this>outfilename = $outfilename;
+		}
+		if ($vformat)
+		{
+			$this>vformat = $vformat;
+		}
+			
 
 		foreach ($this->urls as $url)
 		{
@@ -217,8 +228,14 @@ class Downloader
 	{
 		$cmd = "youtube-dl";
 		$cmd .= " -o ".$this->config["outputFolder"]."/";
-		$cmd .= escapeshellarg("%(title)s-%(uploader)s.%(ext)s");
-
+		$cmd .= escapeshellarg($this->outfilename);
+		
+		if ($this->vformat) 
+		{
+			$cmd .= " --format ";
+			$cmd .= escapeshellarg($this->vformat);
+		}
+		
 		if($this->audio_only)
 		{
 			$cmd .= " -x ";

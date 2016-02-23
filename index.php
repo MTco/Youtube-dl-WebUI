@@ -22,10 +22,21 @@
 		if(isset($_POST['urls']) && !empty($_POST['urls']))
 		{
 			$audio_only = false;
-
 			if(isset($_POST['audio']) && !empty($_POST['audio']))
 			{
 				$audio_only = true;
+			}
+			
+			$outfilename = ''
+			if(isset($_POST['outfilename']) && !empty($_POST['outfilename']))
+			{
+				$outfilename = $_POST['outfilename'];
+			}
+			
+			$vformat = ''
+			if(isset($_POST['vformat']) && !empty($_POST['vformat']))
+			{
+				$vformat = $_POST['vformat'];
 			}
 
 			$downloader = new Downloader($_POST['urls'], $audio_only);
@@ -50,20 +61,40 @@
 				}
 
 			?>
-			<form id="download-form" class="form-horizontal" action="index.php" method="post">					
+			<form id="download-form" action="index.php" method="post">			
 				<div class="form-group">
-					<div class="col-md-10">
-						<input class="form-control" id="url" name="urls" placeholder="Link(s) separated by a comma" type="text">
+					<div class="input-group">
+						<span class="input-group-addon" id="urls-addon">URLs:</span>
+						<input class="form-control" id="url" name="urls" placeholder="Link(s) separated by a comma" type="text" aria-describedby="urls-addon" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">
+						<button type="submit" class="btn btn-primary">Download</button>
 					</div>
 					<div class="col-md-2">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="audio"> Audio Only
-							</label>
+						<div class="input-group">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" name="audio" /> Audio Only
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="input-group">
+							<span class="input-group-addon" id="outfilename-addon">Filename:</span>
+							<input class="form-control" id="outfilename" name="outfilename" placeholder="Output filename template" type="text" aria-describedby="outfilename-addon" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="input-group">
+							<span class="input-group-addon" id="vformat-addon">Format:</span>
+							<input class="form-control" id="vformat" name="vformat" placeholder="Video format code" type="text" aria-describedby="vformat-addon" />
 						</div>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary">Download</button>
+					
 			</form>
 			<br>
 			<div class="row">
