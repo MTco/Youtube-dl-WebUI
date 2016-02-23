@@ -27,19 +27,19 @@
 				$audio_only = true;
 			}
 			
-			$outfilename = '';
+			$outfilename = False;
 			if(isset($_POST['outfilename']) && !empty($_POST['outfilename']))
 			{
 				$outfilename = $_POST['outfilename'];
 			}
 			
-			$vformat = '';
+			$vformat = False;
 			if(isset($_POST['vformat']) && !empty($_POST['vformat']))
 			{
 				$vformat = $_POST['vformat'];
 			}
 
-			$downloader = new Downloader($_POST['urls'], $audio_only);
+			$downloader = new Downloader($_POST['urls'], $audio_only, $outfilename, $vformat);
 			
 			if(!isset($_SESSION['errors']))
 			{
