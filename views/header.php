@@ -22,12 +22,25 @@
 					<?php
 						if($session->is_logged_in() && isset($file))
 					{
-					?>
-					<li><a href="./">Download</a></li>
-					<li><a href="./list.php">List of files</a></li>
-					<?php
+						echo '					<li><a href="./">Download</a></li>';
+						// List of files
+						$files = $file->listFiles();
+						if (count($files) < 1) {
+							echo '					<li><a href="./list.php">List of files</a></li>';
+						} else {
+							echo '					<li><a href="./list.php"><b>List of files</b> ('.count($files).')</a></li>';
+						}
+						unset($files);
+						
+						// Logs
 						if ($file->is_log_enabled()) {
-							echo '<li><a href="./logs.php">Logs</a></li>';
+							$files = $file->listLogs();
+							if (count($files) < 1) {
+								echo '					<li><a href="./logs.php">Logs</a></li>';
+							} else {
+								echo '					<li><a href="./logs.php"><b>Logs</b> ('.count($files).')</a></li>';
+							}
+							unset($files);
 						}
 					?>
 					<li class="dropdown">
