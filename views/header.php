@@ -19,14 +19,16 @@
 			</div>
 			<div class="navbar-collapse collapse navbar-responsive-collapse">
 				<ul class="nav navbar-nav">
+					<?php
+						if($session->is_logged_in() && isset($file))
+					{
+					?>
 					<li><a href="./">Download</a></li>
 					<li><a href="./list.php">List of files</a></li>
 					<?php
-						if($session->is_logged_in())
-						{
-							if (isset($file) && $file->is_log_enabled()) {
-								echo '<li><a href="./logs.php">Logs</a></li>';
-							}
+						if ($file->is_log_enabled()) {
+							echo '<li><a href="./logs.php">Logs</a></li>';
+						}
 					?>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
