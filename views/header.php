@@ -24,23 +24,23 @@
 					{
 						echo '					<li><a href="./">Download</a></li>';
 						// List of files
-						$files = $file->listFiles();
-						if (count($files) < 1) {
+						$filesCount = count($file->listFiles());
+						if ($filesCount < 1) {
 							echo '					<li><a href="./list.php">List of files</a></li>';
 						} else {
-							echo '					<li><a href="./list.php"><b>List of files</b> ('.count($files).')</a></li>';
+							echo '					<li><a href="./list.php"><b>List of files</b> ('.($filesCount).')</a></li>';
 						}
-						unset($files);
+						unset($filesCount);
 						
 						// Logs
 						if ($file->is_log_enabled()) {
-							$files = $file->listLogs();
-							if (count($files) < 1) {
+							$filesCount = count($file->listLogs());
+							if ($filesCount < 1) {
 								echo '					<li><a href="./logs.php">Logs</a></li>';
 							} else {
-								echo '					<li><a href="./logs.php"><b>Logs</b> ('.count($files).')</a></li>';
+								echo '					<li><a href="./logs.php"><b>Logs</b> ('.($filesCount).')</a></li>';
 							}
-							unset($files);
+							unset($filesCount);
 						}
 					?>
 					<li class="dropdown">
