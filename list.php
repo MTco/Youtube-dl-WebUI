@@ -37,9 +37,6 @@
 				</thead>
 				<tbody>
 			<?php
-				$i = 0;
-				$totalSize = 0;
-
 				foreach($files as $f)
 				{
 					echo "<tr>";
@@ -47,7 +44,6 @@
 					echo "<td>".$f["size"]."</td>";
 					echo "<td><a href=\"./list.php?delete=".sha1($f["name"])."\" class=\"btn btn-danger btn-sm\">Delete</a></td>";
 					echo "</tr>";
-					$i++;
 				}
 			?>
 				</tbody>
