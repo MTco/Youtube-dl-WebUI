@@ -40,7 +40,7 @@
 				foreach($files as $f)
 				{
 					echo "<tr>";
-					echo "<td><a href=\"".$file->get_downloads_folder().'/'.$f["name"]."\" download>".$f["name"]."</a></td>";
+					echo "<td><a href=\"".urlencode($file->get_downloads_folder()).'/'.urlencode($f["name"])."\" download>".$f["name"]."</a></td>";
 					echo "<td>".$f["size"]."</td>";
 					echo "<td><a href=\"./list.php?delete=".sha1($f["name"])."\" class=\"btn btn-danger btn-sm\">Delete</a></td>";
 					echo "</tr>";

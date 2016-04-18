@@ -41,7 +41,7 @@
 				foreach($files as $f)
 				{
 					echo "<tr>";
-					echo "<td><a href=\"".$file->get_logs_folder().'/'.$f["name"]."\" target=\"_blank\">".$f["name"]."</a></td>";
+					echo "<td><a href=\"".urlencode($file->get_logs_folder()).'/'.urlencode($f["name"])."\" target=\"_blank\">".$f["name"]."</a></td>";
 					echo "<td>".$f["size"]."</td>";
 					echo "<td><a href=\"./logs.php?delete=".sha1($f["name"])."\" class=\"btn btn-danger btn-sm\">Delete</a></td>";
 					echo "</tr>";
