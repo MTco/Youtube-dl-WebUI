@@ -53,7 +53,7 @@
 			<form id="download-form" class="form-horizontal" action="index.php" method="post">					
 				<div class="form-group">
 					<div class="col-md-10">
-						<input class="form-control" id="url" name="urls" placeholder="Link(s) separated by a comma" type="text">
+						<input class="form-control" id="url" name="urls" placeholder="Link(s) separated by a comma" type="text" required>
 					</div>
 					<div class="col-md-2">
 						<div class="checkbox">
