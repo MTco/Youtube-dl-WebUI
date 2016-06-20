@@ -30,8 +30,9 @@
 			<table class="table table-striped table-hover ">
 				<thead>
 					<tr>
-						<th style="min-width:800px; height:35px">Timestamp</th>
-						<th style="min-width:80px">Ended</th>
+						<th style="min-width:700px; height:35px">Timestamp</th>
+						<th style="min-width:80px">Ended?</th>
+                                                <th style="min-width:80px">Ok?</th>
 						<th style="min-width:80px">Size</th>
 						<th style="min-width:110px">Delete link</th>
 					</tr>
@@ -43,6 +44,7 @@
 				{
 					echo "<tr>";
 					echo "<td><a href=\"".rawurlencode($file->get_logs_folder()).'/'.rawurlencode($f["name"])."\" target=\"_blank\">".$f["name"]."</a></td>";
+                                        echo "<td>".($f["ended"] ? '&#10003;' : '')."</td>";
 					echo "<td>".($f["100"] ? '&#10003;' : '')."</td>";
 					echo "<td>".$f["size"]."</td>";
 					echo "<td><a href=\"./logs.php?delete=".sha1($f["name"])."\" class=\"btn btn-danger btn-sm\">Delete</a></td>";

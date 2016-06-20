@@ -59,6 +59,16 @@ class FileHandler
 			} catch (Exception $e) {
 				$content["100"] = False;
 			}	
+			try {
+				$handle = fopen($file, 'r');
+				fseek($handle, filesize($file) - 1);
+				$lastc = fgets($handle, 1);
+				fclose($handle);
+				$content["ended"] = ($lastc === "\n");
+			} catch (Exception $e) {
+                                $content["ended"] = False;
+                        }
+
 
 			$files[] = $content;
 		}
