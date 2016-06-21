@@ -66,8 +66,8 @@ class FileHandler
 				fclose($handle);
 				$content["ended"] = ($lastc === "\n");
 			} catch (Exception $e) {
-                                $content["ended"] = False;
-                        }
+				$content["ended"] = False;
+			}
 
 
 			$files[] = $content;

@@ -30,9 +30,9 @@
 			<table class="table table-striped table-hover ">
 				<thead>
 					<tr>
-						<th style="min-width:800px; height:35px">Title</th>
-						<th style="min-width:80px">Size</th>
-						<th style="min-width:110px">Delete link</th>
+						<th>Title</th>
+						<th>Size</th>
+						<th>Delete link</th>
 					</tr>
 				</thead>
 				<tbody>
