@@ -43,7 +43,7 @@
 				foreach($files as $f)
 				{
 					echo "<tr>";
-					echo "<td><a href=\"".rawurlencode($file->get_logs_folder()).'/'.rawurlencode($f["name"])."\" target=\"_blank\">".$f["name"]."</a></td>";
+					echo "<td><div><a href=\"".rawurlencode($file->get_logs_folder()).'/'.rawurlencode($f["name"])."\" target=\"_blank\">".$f["name"]."</a></div><div>".$f["lastline"]."</div></td>";
 						echo "<td>".($f["ended"] ? '&#10003;' : '')."</td>";
 					echo "<td>".($f["100"] ? '&#10003;' : '')."</td>";
 					echo "<td>".$f["size"]."</td>";

@@ -55,8 +55,10 @@ class FileHandler
 
 			try {
 				$lines = explode("\r", file_get_contents($file));
+				$content["lastline"] = array_slice($lines, -1)[0];
 				$content["100"] = strpos($lines[count($lines)-1], ' 100% of ') > 0;
 			} catch (Exception $e) {
+				$content["lastline"] = '';
 				$content["100"] = False;
 			}	
 			try {
