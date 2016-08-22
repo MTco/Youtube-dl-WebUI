@@ -16,7 +16,7 @@ class FileHandler
 		if(!$this->outuput_folder_exists())
 			return;
 
-		$folder = dirname(__DIR__).'/'.$this->config["outputFolder"].'/';
+		$folder = $this->get_downloads_folder().'/';
 
 		foreach(glob($folder.'*.*', GLOB_BRACE) as $file)
 		{
@@ -57,7 +57,7 @@ class FileHandler
 		if(!$this->outuput_folder_exists())
 			return;
 
-		$folder = dirname(__DIR__).'/'.$this->config["logFolder"].'/';
+		$folder = $this->get_downloads_folder().'/';
 
 		foreach(glob($folder.'*.txt', GLOB_BRACE) as $file)
 		{
@@ -92,7 +92,7 @@ class FileHandler
 
 	public function delete($id)
 	{
-		$folder = dirname(__DIR__).'/'.$this->config["outputFolder"].'/';
+		$folder = $this->get_downloads_folder().'/';
 
 		foreach(glob($folder.'*.*', GLOB_BRACE) as $file)
 		{
@@ -118,10 +118,10 @@ class FileHandler
 
 	private function outuput_folder_exists()
 	{
-		if(!is_dir($this->config['outputFolder']))
+		if(!is_dir($this->get_downloads_folder()))
 		{
 			//Folder doesn't exist
-			if(!mkdir('./'.$this->config['outputFolder'], 0777))
+			if(!mkdir($this->get_downloads_folder(),0777))
 			{
 				return false; //No folder and creation failed
 			}
@@ -139,12 +139,17 @@ class FileHandler
 
 	public function free_space()
 	{
-		return $this->to_human_filesize(disk_free_space($this->config["outputFolder"]));
+		return $this->to_human_filesize(disk_free_space($this->get_downloads_folder()));
 	}
 
 	public function get_downloads_folder()
 	{
-		return $this->config["outputFolder"];
+                $path =  $this->config["outputFolder"];
+                if(strpos($path , "/") !== 0) 
+                {
+                        $path = dirname(__DIR__).'/' . $path;
+                }
+		return $path;
 	}
 
 	public function get_logs_folder()

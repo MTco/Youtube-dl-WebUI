@@ -1,4 +1,5 @@
 <?php
+include_once('FileHandler.php');
 
 class Downloader
 {
@@ -14,16 +15,7 @@ class Downloader
 	public function __construct($post, $audio_only, $outfilename=False, $vformat=False)
 	{
 		$this->config = require dirname(__DIR__).'/config/config.php';
-
-		//this allows to use absolute paths
-		if(strpos($this->config["outputFolder"], "/") === 0)
-		{
-			$this->download_path = $this->config["outputFolder"];
-		}
-		else
-		{
-			$this->download_path = dirname(__DIR__).'/'.$this->config["outputFolder"];
-		}
+		$this->download_path = (new FileHandler())->get_downloads_folder();
 		
 		if($this->config["log"])
 		{
@@ -135,7 +127,7 @@ class Downloader
 		}
 
 		$config = require dirname(__DIR__).'/config/config.php';
-		$folder = dirname(__DIR__).'/'.$config["outputFolder"].'/';
+		$folder = $this->download_path;
 
 		foreach(glob($folder.'*.part') as $file)
 		{
@@ -227,7 +219,7 @@ class Downloader
 	private function do_download()
 	{
 		$cmd = "youtube-dl";
-		$cmd .= " -o ".$this->config["outputFolder"]."/";
+		$cmd .= " -o ".$this->download_path."/";
 		$cmd .= escapeshellarg($this->outfilename);
 		
 		if ($this->vformat) 
@@ -235,7 +227,6 @@ class Downloader
 			$cmd .= " --format ";
 			$cmd .= escapeshellarg($this->vformat);
 		}
-		
 		if($this->audio_only)
 		{
 			$cmd .= " -x ";
