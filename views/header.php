@@ -35,7 +35,7 @@
 						
 						// Logs
 						if ($file->is_log_enabled()) {
-							$filesCount = count($file->listLogs());
+							$filesCount = $file->countLogs();
 							if ($filesCount < 1) {
 								echo '					<li><a href="./logs.php">Logs</a></li>';
 							} else {

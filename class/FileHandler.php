@@ -34,6 +34,18 @@ class FileHandler
 	{
 		return !!($this->config["log"]);
 	}
+	
+	public function countLogs()
+	{
+		if(!$this->config["log"])
+			return;
+
+		if(!$this->outuput_folder_exists())
+			return;
+
+		$folder = dirname(__DIR__).'/'.$this->config["logFolder"].'/';
+		return count(glob($folder.'*.txt', GLOB_BRACE));
+	}
 
 	public function listLogs()
 	{
