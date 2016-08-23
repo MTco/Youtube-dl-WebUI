@@ -40,10 +40,10 @@ class FileHandler
 		if(!$this->config["log"])
 			return;
 
-		if(!$this->outuput_folder_exists())
+		if(!$this->logs_folder_exists())
 			return;
 
-		$folder = dirname(__DIR__).'/'.$this->config["logFolder"].'/';
+		$folder = $this->get_logs_folder().'/';
 		return count(glob($folder.'*.txt', GLOB_BRACE));
 	}
 
@@ -54,10 +54,10 @@ class FileHandler
 		if(!$this->config["log"])
 			return;
 
-		if(!$this->outuput_folder_exists())
+		if(!$this->logs_folder_exists())
 			return;
 
-		$folder = $this->get_downloads_folder().'/';
+		$folder = $this->get_logs_folder().'/';
 
 		foreach(glob($folder.'*.txt', GLOB_BRACE) as $file)
 		{
@@ -105,7 +105,7 @@ class FileHandler
 
 	public function deleteLog($id)
 	{
-		$folder = dirname(__DIR__).'/'.$this->config["logFolder"].'/';
+		$folder = $this->get_logs_folder().'/';
 
 		foreach(glob($folder.'*.txt', GLOB_BRACE) as $file)
 		{
@@ -144,17 +144,36 @@ class FileHandler
 
 	public function get_downloads_folder()
 	{
-                $path =  $this->config["outputFolder"];
-                if(strpos($path , "/") !== 0) 
-                {
-                        $path = dirname(__DIR__).'/' . $path;
-                }
+		$path =  $this->config["outputFolder"];
+		if(strpos($path , "/") !== 0) 
+		{
+				$path = dirname(__DIR__).'/' . $path;
+		}
 		return $path;
 	}
 
 	public function get_logs_folder()
 	{
-		return $this->config["logFolder"];
+		$path =  $this->config["logFolder"];
+		if(strpos($path , "/") !== 0) 
+		{
+				$path = dirname(__DIR__).'/' . $path;
+		}
+		return $path;
+	}
+
+	private function logs_folder_exists()
+	{
+		if(!is_dir($this->get_logs_folder()))
+		{
+			//Folder doesn't exist
+			if(!mkdir($this->get_logs_folder(),0777))
+			{
+				return false; //No folder and creation failed
+			}
+		}
+		
+		return true;
 	}
 }
 
