@@ -140,7 +140,7 @@ class Downloader
 	{
 		if($this->is_youtubedl_installed() != 0)
 		{
-			$this->errors[] = "Youtube-dl is not installed, see <a>https://rg3.github.io/youtube-dl/download.html</a> !";
+			$this->errors[] = "Youtube-dl is not installed, see <a href='https://rg3.github.io/youtube-dl/download.html'>Youtube-dl site</a> !";
 		}
 
 		$this->check_outuput_folder();
@@ -149,7 +149,7 @@ class Downloader
 		{
 			if($this->is_extracter_installed() != 0)
 			{
-				$this->errors[] = "Install an audio extracter (ex: avconv) !";
+				$this->errors[] = "Install an audio extracter (ex: avconv or ffmpeg) !";
 			}
 		}
 
