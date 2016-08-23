@@ -15,11 +15,12 @@ class Downloader
 	public function __construct($post, $audio_only, $outfilename=False, $vformat=False)
 	{
 		$this->config = require dirname(__DIR__).'/config/config.php';
-		$this->download_path = (new FileHandler())->get_downloads_folder();
+		$fh = new FileHandler();
+		$this->download_path = $fh->get_downloads_folder();
 		
 		if($this->config["log"])
 		{
-			$this->log_path = dirname(__DIR__).'/'.$this->config["logFolder"];
+			$this->log_path = $fh->get_logs_folder();
 		}
 
 		$this->audio_only = $audio_only;
@@ -197,20 +198,24 @@ class Downloader
 			}
 		}
 		
-		if(!is_dir($this->log_path))
+		// LOG folder
+		if($this->config["log"])
 		{
-			//Folder doesn't exist
-			if(!mkdir($this->log_path, 0775))
+			if(!is_dir($this->log_path))
 			{
-				$this->errors[] = "Log folder doesn't exist and creation failed! (".$this->log_path.")";
+				//Folder doesn't exist
+				if(!mkdir($this->log_path, 0775))
+				{
+					$this->errors[] = "Log folder doesn't exist and creation failed! (".$this->log_path.")";
+				}
 			}
-		}
-		else
-		{
-			//Exists but can I write ?
-			if(!is_writable($this->log_path))
+			else
 			{
-				$this->errors[] = "Log folder isn't writable! (".$this->log_path.")";
+				//Exists but can I write ?
+				if(!is_writable($this->log_path))
+				{
+					$this->errors[] = "Log folder isn't writable! (".$this->log_path.")";
+				}
 			}
 		}
 		
@@ -240,7 +245,7 @@ class Downloader
 		$cmd .= " --restrict-filenames"; // --restrict-filenames is for specials chars
 		if($this->config["log"])
 		{
-			$cmd .= " > ".$this->config["logFolder"]."/$(date  +\"%Y-%m-%d_%H-%M-%S-%N\").txt";
+			$cmd .= " > ".$this->log_path."/$(date  +\"%Y-%m-%d_%H-%M-%S-%N\").txt";
 		}
 		else
 		{
