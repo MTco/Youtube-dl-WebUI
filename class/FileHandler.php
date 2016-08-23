@@ -145,7 +145,7 @@ class FileHandler
 	public function get_downloads_folder()
 	{
 		$path =  $this->config["outputFolder"];
-		if(strpos($path , "/") !== 0) 
+		if(strpos($path , "/") !== 0)
 		{
 				$path = dirname(__DIR__).'/' . $path;
 		}
@@ -155,11 +155,31 @@ class FileHandler
 	public function get_logs_folder()
 	{
 		$path =  $this->config["logFolder"];
-		if(strpos($path , "/") !== 0) 
+		if(strpos($path , "/") !== 0)
 		{
 				$path = dirname(__DIR__).'/' . $path;
 		}
 		return $path;
+	}
+
+	public function get_relative_downloads_folder()
+	{
+		$path =  $this->config["outputFolder"];
+		if(strpos($path , "/") !== 0)
+		{
+				return $this->config["outputFolder"];
+		}
+		return false;
+	}
+
+	public function get_relative_log_folder()
+	{
+		$path =  $this->config["logFolder"];
+		if(strpos($path , "/") !== 0)
+		{
+				return $this->config["logFolder"];;
+		}
+		return false;
 	}
 
 	private function logs_folder_exists()

@@ -40,7 +40,14 @@
 				foreach($files as $f)
 				{
 					echo "<tr>";
-					echo "<td><a href=\"".rawurlencode($file->get_downloads_folder()).'/'.rawurlencode($f["name"])."\" download>".$f["name"]."</a></td>";
+					if ($file->get_relative_downloads_folder())
+					{
+						echo "<td><a href=\"".rawurlencode($file->get_relative_downloads_folder()).'/'.rawurlencode($f["name"])."\" download>".$f["name"]."</a></td>";
+					}
+					else
+					{
+						echo "<td>".$f["name"]."</td>";
+					}
 					echo "<td>".$f["size"]."</td>";
 					echo "<td><a href=\"./list.php?delete=".sha1($f["name"])."\" class=\"btn btn-danger btn-sm\">Delete</a></td>";
 					echo "</tr>";

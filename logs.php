@@ -43,8 +43,15 @@
 				foreach($files as $f)
 				{
 					echo "<tr>";
-					echo "<td><div><a href=\"".rawurlencode($file->get_logs_folder()).'/'.rawurlencode($f["name"])."\" target=\"_blank\">".$f["name"]."</a></div><div>".$f["lastline"]."</div></td>";
-						echo "<td>".($f["ended"] ? '&#10003;' : '')."</td>";
+					if (get_relative_log_folder)
+					{
+						echo "<td><div><a href=\"".rawurlencode($file->get_relative_log_folder()).'/'.rawurlencode($f["name"])."\" target=\"_blank\">".$f["name"]."</a></div><div>".$f["lastline"]."</div></td>";
+					}
+					else
+					{
+						echo "<td><div>".$f["name"]."</div><div>".$f["lastline"]."</div></td>";
+					}
+					echo "<td>".($f["ended"] ? '&#10003;' : '')."</td>";
 					echo "<td>".($f["100"] ? '&#10003;' : '')."</td>";
 					echo "<td>".$f["size"]."</td>";
 					echo "<td><a href=\"./logs.php?delete=".sha1($f["name"])."\" class=\"btn btn-danger btn-sm\">Delete</a></td>";
