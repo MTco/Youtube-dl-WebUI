@@ -65,7 +65,7 @@
 				<div class="form-group">
 					<div class="input-group">
 						<span class="input-group-addon" id="urls-addon">URLs:</span>
-						<input class="form-control" id="url" name="urls" placeholder="Link(s) separated by a comma" type="text" aria-describedby="urls-addon" />
+						<input class="form-control" id="url" name="urls" placeholder="Link(s) separated by a comma" type="text" aria-describedby="urls-addon" required/>
 					</div>
 				</div>
 				<div class="row">
