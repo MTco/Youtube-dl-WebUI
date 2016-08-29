@@ -76,7 +76,7 @@ class FileHandler
 			try {
 				$handle = fopen($file, 'r');
 				fseek($handle, filesize($file) - 1);
-				$lastc = fgets($handle, 1);
+				$lastc = fgets($handle);
 				fclose($handle);
 				$content["ended"] = ($lastc === "\n");
 			} catch (Exception $e) {
