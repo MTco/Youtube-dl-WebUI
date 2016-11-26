@@ -56,8 +56,6 @@
 			?>
 				</tbody>
 			</table>
-			<br/>
-			<br/>
 		<?php
 			}
 			else
