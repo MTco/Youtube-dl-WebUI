@@ -24,7 +24,7 @@ class FileHandler
 			$content["name"] = str_replace($folder, "", $file);
 			$content["size"] = $this->to_human_filesize(filesize($file));
 			
-			if (substr($content["name"], '.part') !== '.part') {
+			if (substr($content["name"], -strlen('.part')) !== '.part') {
 				$files[] = $content;
 			}
 			
@@ -48,7 +48,7 @@ class FileHandler
 			$content["name"] = str_replace($folder, "", $file);
 			$content["size"] = $this->to_human_filesize(filesize($file));
 			
-			if (substr($content["name"], '.part') === '.part') {
+			if (substr($content["name"], -strlen('.part')) === '.part') {
 				$files[] = $content;
 			}
 			
