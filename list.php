@@ -68,7 +68,7 @@
 			if(!empty($parts))
 			{
 		?>
-			<h2>List of parts files:</h2>
+			<h2>List of part files:</h2>
 			<table class="table table-striped table-hover ">
 				<thead>
 					<tr>
