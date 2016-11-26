@@ -24,7 +24,34 @@ class FileHandler
 			$content["name"] = str_replace($folder, "", $file);
 			$content["size"] = $this->to_human_filesize(filesize($file));
 			
-			$files[] = $content;
+			if (substr($content["name"], '.part') !== '.part') {
+				$files[] = $content;
+			}
+			
+		}
+
+		return $files;
+	}
+
+	public function listParts()
+	{
+		$files = [];
+
+		if(!$this->outuput_folder_exists())
+			return;
+
+		$folder = $this->get_downloads_folder().'/';
+
+		foreach(glob($folder.'*.*', GLOB_BRACE) as $file)
+		{
+			$content = [];
+			$content["name"] = str_replace($folder, "", $file);
+			$content["size"] = $this->to_human_filesize(filesize($file));
+			
+			if (substr($content["name"], '.part') === '.part') {
+				$files[] = $content;
+			}
+			
 		}
 
 		return $files;
