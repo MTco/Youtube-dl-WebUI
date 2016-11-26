@@ -11,13 +11,14 @@
 		header("Location: login.php");
 	}
 
-	$files = $file->listFiles();
-
 	if($session->is_logged_in() && isset($_GET["delete"]))
 	{
 		$file->delete($_GET["delete"]);
 		header("Location: list.php");
 	}
+	
+	$files = $file->listFiles();
+	$parts = $file->listParts();
 
 	require 'views/header.php';
 ?>
@@ -62,6 +63,45 @@
 			else
 			{
 				echo "<br><div class=\"alert alert-warning\" role=\"alert\">No files!</div>";
+			}
+		?>
+			<br/>
+		<?php
+			if(!empty($parts))
+			{
+		?>
+			<h2>List of parts files:</h2>
+			<table class="table table-striped table-hover ">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Size</th>
+						<th>Delete link</th>
+					</tr>
+				</thead>
+				<tbody>
+			<?php
+				foreach($parts as $f)
+				{
+					echo "<tr>";
+					if ($file->get_relative_downloads_folder())
+					{
+						echo "<td><a href=\"".rawurlencode($file->get_relative_downloads_folder()).'/'.rawurlencode($f["name"])."\" download>".$f["name"]."</a></td>";
+					}
+					else
+					{
+						echo "<td>".$f["name"]."</td>";
+					}
+					echo "<td>".$f["size"]."</td>";
+					echo "<td><a href=\"./list.php?delete=".sha1($f["name"])."\" class=\"btn btn-danger btn-sm\">Delete</a></td>";
+					echo "</tr>";
+				}
+			?>
+				</tbody>
+			</table>
+			<br/>
+			<br/>
+		<?php
 			}
 		?>
 			<br/>
