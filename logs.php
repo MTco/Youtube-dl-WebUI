@@ -43,7 +43,7 @@
 				foreach($files as $f)
 				{
 					echo "<tr>";
-					if (get_relative_log_folder)
+					if ($file->get_relative_log_folder())
 					{
 						echo "<td><div><a href=\"".rawurlencode($file->get_relative_log_folder()).'/'.rawurlencode($f["name"])."\" target=\"_blank\">".$f["name"]."</a></div><div>".$f["lastline"]."</div></td>";
 					}
