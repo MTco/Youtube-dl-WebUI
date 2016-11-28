@@ -33,7 +33,7 @@
 					<tr>
 						<th>Title</th>
 						<th>Size</th>
-						<th>Delete link</th>
+						<th><span class="pull-right">Delete link</span></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,7 +50,7 @@
 						echo "<td>".$f["name"]."</td>";
 					}
 					echo "<td>".$f["size"]."</td>";
-					echo "<td><a href=\"./list.php?delete=".sha1($f["name"])."\" class=\"btn btn-danger btn-sm\">Delete</a></td>";
+					echo "<td><a href=\"./list.php?delete=".sha1($f["name"])."\" class=\"btn btn-danger btn-sm pull-right\">Delete</a></td>";
 					echo "</tr>";
 				}
 			?>
@@ -74,7 +74,7 @@
 					<tr>
 						<th>Title</th>
 						<th>Size</th>
-						<th>Delete link</th>
+						<th><span class="pull-right">Delete link</span></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -91,7 +91,7 @@
 						echo "<td>".$f["name"]."</td>";
 					}
 					echo "<td>".$f["size"]."</td>";
-					echo "<td><a href=\"./list.php?delete=".sha1($f["name"])."\" class=\"btn btn-danger btn-sm\">Delete</a></td>";
+					echo "<td><a href=\"./list.php?delete=".sha1($f["name"])."\" class=\"btn btn-danger btn-sm pull-right\">Delete</a></td>";
 					echo "</tr>";
 				}
 			?>
