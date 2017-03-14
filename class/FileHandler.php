@@ -3,6 +3,7 @@
 class FileHandler
 {
 	private $config = [];
+	private $re_partial = '/\.part(?:-Frag\d+)?$/';
 
 	public function __construct()
 	{
@@ -24,7 +25,7 @@ class FileHandler
 			$content["name"] = str_replace($folder, "", $file);
 			$content["size"] = $this->to_human_filesize(filesize($file));
 			
-			if (substr($content["name"], -strlen('.part')) !== '.part') {
+			if (preg_match($this->re_partial, $content["name"]) === 0) {
 				$files[] = $content;
 			}
 			
@@ -48,7 +49,7 @@ class FileHandler
 			$content["name"] = str_replace($folder, "", $file);
 			$content["size"] = $this->to_human_filesize(filesize($file));
 			
-			if (substr($content["name"], -strlen('.part')) === '.part') {
+			if (preg_match($this->re_partial, $content["name"]) !== 0) {
 				$files[] = $content;
 			}
 			
