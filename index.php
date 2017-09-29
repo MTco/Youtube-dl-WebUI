@@ -26,13 +26,13 @@
 			{
 				$audio_only = true;
 			}
-			
+
 			$outfilename = False;
 			if(isset($_POST['outfilename']) && !empty($_POST['outfilename']))
 			{
 				$outfilename = $_POST['outfilename'];
 			}
-			
+
 			$vformat = False;
 			if(isset($_POST['vformat']) && !empty($_POST['vformat']))
 			{
@@ -40,7 +40,7 @@
 			}
 
 			$downloader = new Downloader($_POST['urls'], $audio_only, $outfilename, $vformat);
-			
+
 			if(!isset($_SESSION['errors']))
 			{
 				header("Location: index.php");
@@ -61,7 +61,7 @@
 				}
 
 			?>
-			<form id="download-form" action="index.php" method="post">			
+			<form id="download-form" action="index.php" method="post">
 				<div class="form-group">
 					<div class="input-group">
 						<span class="input-group-addon" id="urls-addon">URLs:</span>
@@ -94,7 +94,7 @@
 						</div>
 					</div>
 				</div>
-					
+
 			</form>
 			<br>
 			<div class="row">

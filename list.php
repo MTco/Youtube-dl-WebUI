@@ -16,7 +16,7 @@
 		$file->delete($_GET["delete"]);
 		header("Location: list.php");
 	}
-	
+
 	$files = $file->listFiles();
 	$parts = $file->listParts();
 
