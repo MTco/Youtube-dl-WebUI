@@ -12,7 +12,7 @@ class Downloader
 	private $outfilename = "%(title)s-%(uploader)s.%(ext)s";
 	private $vformat = false;
 
-	public function __construct($post, $audio_only, $outfilename=False, $vformat=False)
+	public function __construct($post)
 	{
 		$this->config = require dirname(__DIR__).'/config/config.php';
 		$fh = new FileHandler();
@@ -23,22 +23,12 @@ class Downloader
 			$this->log_path = $fh->get_logs_folder();
 		}
 
-		$this->audio_only = $audio_only;
 		$this->urls = explode(",", $post);
 
-		if(!$this->check_requirements($audio_only))
+		if(!$this->check_requirements())
 		{
 			return;
-		}
-		if ($outfilename)
-		{
-			$this->outfilename = $outfilename;
-		}
-		if ($vformat)
-		{
-			$this->vformat = $vformat;
-		}
-			
+		}	
 
 		foreach ($this->urls as $url)
 		{
@@ -53,16 +43,38 @@ class Downloader
 			$_SESSION['errors'] = $this->errors;
 			return;
 		}
+	}
+
+	public function download($audio_only, $outfilename=False, $vformat=False) {
+		if ($audio_only && !$this->check_requirements($audio_only))
+		{
+			return;
+		}
+
+		if(isset($this->errors) && count($this->errors) > 0)
+		{
+			$_SESSION['errors'] = $this->errors;
+			return;
+		}
+
+		if ($outfilename)
+		{
+			$this->outfilename = $outfilename;
+		}
+		if ($vformat)
+		{
+			$this->vformat = $vformat;
+		}
 
 		if($this->config["max_dl"] == 0)
 		{
-			$this->do_download();
+			$this->do_download($audio_only);
 		}
 		elseif($this->config["max_dl"] > 0)
 		{
 			if($this->background_jobs() >= 0 && $this->background_jobs() < $this->config["max_dl"])
 			{
-				$this->do_download();
+				$this->do_download($audio_only);
 			}
 			else
 			{
@@ -75,6 +87,7 @@ class Downloader
 			$_SESSION['errors'] = $this->errors;
 			return;
 		}
+
 	}
 
 	public static function background_jobs()
@@ -221,7 +234,7 @@ class Downloader
 		
 	}
 
-	private function do_download()
+	private function do_download($audio_only)
 	{
 		$cmd = "youtube-dl";
 		$cmd .= " -o ".$this->download_path."/";
@@ -232,7 +245,7 @@ class Downloader
 			$cmd .= " --format ";
 			$cmd .= escapeshellarg($this->vformat);
 		}
-		if($this->audio_only)
+		if($audio_only)
 		{
 			$cmd .= " -x ";
 		}
