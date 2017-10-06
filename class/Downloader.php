@@ -90,6 +90,18 @@ class Downloader
 
 	}
 
+	public function info()
+	{
+		$info = $this->do_info();
+
+		if(isset($this->errors) && count($this->errors) > 0)
+		{
+			$_SESSION['errors'] = $this->errors;
+		}
+
+		return $info;
+	}
+
 	public static function background_jobs()
 	{
 		return shell_exec("ps aux | grep -v grep | grep -v \"youtube-dl -U\" | grep youtube-dl | wc -l");
@@ -149,7 +161,7 @@ class Downloader
 		}
 	}
 
-	private function check_requirements($audio_only)
+	private function check_requirements($audio_only=False)
 	{
 		if($this->is_youtubedl_installed() != 0)
 		{
@@ -186,6 +198,12 @@ class Downloader
 		exec("which ".$this->config["extracter"], $out, $r);
 		return $r;
 	}
+
+        private function is_python_installed()
+        {
+                exec("which python", $out, $r);
+                return $r;
+        }
 
 	private function is_valid_url($url)
 	{
@@ -267,6 +285,24 @@ class Downloader
 		$cmd .= " & echo $!";
 
 		shell_exec($cmd);
+	}
+
+	private function do_info()
+	{
+		$cmd = "youtube-dl -J ";
+
+		foreach($this->urls as $url)
+		{
+			$cmd .= " ".escapeshellarg($url);
+		}
+
+		if ($this->is_python_installed() == 0)
+		{
+			$cmd .= " | python -m json.tool";
+		}
+
+		return shell_exec($cmd);
+
 	}
 }
 
