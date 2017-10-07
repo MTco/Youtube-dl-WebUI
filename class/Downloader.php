@@ -152,8 +152,8 @@ class Downloader
 			shell_exec("kill ".$p);
 		}
 
-		$config = require dirname(__DIR__).'/config/config.php';
-		$folder = $this->download_path;
+                $fh = new FileHandler();
+                $folder = $fh->get_downloads_folder();
 
 		foreach(glob($folder.'*.part') as $file)
 		{
