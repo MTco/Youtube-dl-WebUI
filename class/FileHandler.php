@@ -158,7 +158,7 @@ class FileHandler
 		return true;
 	}
 
-	public function to_human_filesize($bytes, $decimals = 0)
+	public function to_human_filesize($bytes, $decimals = 1)
 	{
 		$sz = 'BKMGTP';
 		$factor = floor((strlen($bytes) - 1) / 3);
