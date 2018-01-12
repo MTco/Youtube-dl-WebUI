@@ -40,7 +40,7 @@
 			}
 
 			$downloader = new Downloader($_POST['urls']);
-			$downloader::download($audio_only, $outfilename, $vformat);
+			$downloader->download($audio_only, $outfilename, $vformat);
 
 			if(!isset($_SESSION['errors']))
 			{

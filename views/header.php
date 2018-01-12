@@ -24,6 +24,7 @@
 						if($session->is_logged_in() && isset($file))
 					{
 						echo '					<li><a href="./">Download</a></li>';
+                                                echo '                                  <li><a href="./info.php">JSON Info</a></li>';
 						// List of files
 						$filesCount = count($file->listFiles());
 						if ($filesCount < 1) {
