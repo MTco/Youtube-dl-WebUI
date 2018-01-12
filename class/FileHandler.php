@@ -167,7 +167,17 @@ class FileHandler
 
 	public function free_space()
 	{
-		return $this->to_human_filesize(disk_free_space($this->get_downloads_folder()));
+		return $this->to_human_filesize(disk_free_space(realpath($this->get_downloads_folder())));
+	}
+
+	public function used_space()
+	{
+		$path = realpath($this->get_downloads_folder());
+		$bytestotal = 0;
+		foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object){
+			$bytestotal += $object->getSize();
+		}
+		return $this->to_human_filesize($bytestotal);
 	}
 
 	public function get_downloads_folder()

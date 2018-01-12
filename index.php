@@ -104,6 +104,7 @@
 						<div class="panel-heading"><h3 class="panel-title">Info</h3></div>
 						<div class="panel-body">
 							<p>Free space : <?php echo $file->free_space(); ?></b></p>
+							<p>Used space : <?php echo $file->used_space(); ?></b></p>
 							<p>Download folder : <?php echo $file->get_downloads_folder(); ?></p>
 						</div>
 					</div>
