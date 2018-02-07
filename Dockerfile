@@ -19,7 +19,7 @@ RUN rm -rf .git README.md img .gitignore docker
 WORKDIR /
 RUN chmod -R 755 /www && chown -R www-data:www-data /www
 
-COPY ./vhost.conf /etc/apache2/conf.d/extra/vhost.conf
+COPY ./docker/vhost.conf /etc/apache2/conf.d/extra/vhost.conf
 
 RUN ln -sf /dev/stdout /var/log/apache2/youtube-dl_access.log
 RUN ln -sf /dev/stderr /var/log/apache2/youtube-dl_error.log
