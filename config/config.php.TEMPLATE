@@ -9,7 +9,7 @@ return array(
 	"outputFolder" => "downloads",
 	"extracter" => "avconv",
 	"log" => true,
-	"outfilename" = > "%(title)s-%(id)s.%(ext)s",
+	"outfilename" => "%(title)s-%(id)s.%(ext)s",
 	"logFolder" => "logs",
 	"max_dl" => 3);
 
