@@ -9,6 +9,10 @@ class Session
 	public function __construct()
 	{
 		session_start();
+		
+		if (!file_exists(dirname(__DIR__).'/config/config.php')) {
+			copy(dirname(__DIR__).'/config/config.php.TEMPLATE', dirname(__DIR__).'/config/config.php');
+		}
 
 		$this->config = require dirname(__DIR__).'/config/config.php';
 
