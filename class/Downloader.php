@@ -9,7 +9,7 @@ class Downloader
 	private $errors = [];
 	private $download_path = "";
 	private $log_path = "";
-	private $outfilename = "%(title)s-%(uploader)s.%(ext)s";
+	private $outfilename = "%(title)s-%(id)s.%(ext)s";
 	private $vformat = false;
 
 	public function __construct($post)
@@ -21,6 +21,11 @@ class Downloader
 		if($this->config["log"])
 		{
 			$this->log_path = $fh->get_logs_folder();
+		}
+
+		if($this->config["outfilename"])
+		{
+			$this->outfilename = $this->config["outfilename"];
 		}
 
 		$this->urls = explode(",", $post);

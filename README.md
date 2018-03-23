@@ -11,24 +11,39 @@ It supports simultaneous downloads in background.
 ### You can now extract the audio of a video and download multiple videos at the same time !
 
 ## Requirements
-- A web server (Apache or nginx)
+- A web server (Apache or nginx) on Unix system.
 - PHP latest version should be fine.
-- Python 2.7 for Youtube-dl
-- [Youtube-dl](https://github.com/rg3/youtube-dl)
-- avconv or other is required for audio extraction (from youtube-dl doc) :
+- Python 2.7 for Youtube-dl.
+- [Youtube-dl](https://github.com/rg3/youtube-dl).
+- avconv or ffmpeg is required for audio extraction (from youtube-dl doc) :
 `-x, --extract-audio convert video files to audio-only files (requires ffmpeg or avconv and ffprobe or avprobe)`
 
 ## How to install ?
 1. Clone this repo in your web folder (ex: /var/www).
-2. Edit config.php as you want it to work.
-3. Create the "videos" folder. 
-4. Check permissions.
-5. Load index.php to check that everything works.
+1. Copy `config/config.php.TEMPLATE` to  `config/config.php` and edit it as you like ([change password](#set-a-password)).
+1. Check permissions.
+1. Load index.php to check that everything works.
 
 ## Set a password
-1. Open config/config.php
-2. Set security to true
+1. Open `config/config.php`.
+2. Set security to true.
 3. Find a password, hash it with md5 and replace the value of password.
+
+Example (chosen password is root):
+
+```
+echo -n root|md5sum| sed 's/ .*//'
+# Returns the hash 63a9f0ea7bb98050796b649e85481845
+```
+1. Clone this repo in your web folder (ex: /var/www).
+1. Copy `config/config.php.TEMPLATE` to  `config/config.php` and edit it as you like ([change password](#set-a-password)).
+1. Check permissions.
+1. Load index.php to check that everything works.
+
+## Set a password
+1. Open `config/config.php`.
+1. Set `security` to `true`.
+1. Find a password, hash it with md5 and replace the value of password.
 
 Example (chosen password is root):
 
@@ -42,7 +57,7 @@ echo -n root|md5sum| sed 's/ .*//'
 
 ## License
 
-Copyright (c) 2016 Timendum
+Copyright (c) 2018 Timendum
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
