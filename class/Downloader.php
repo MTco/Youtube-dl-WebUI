@@ -28,7 +28,7 @@ class Downloader
 			$this->outfilename = $this->config["outfilename"];
 		}
 
-		$this->urls = explode(",", $post);
+		$this->urls = explode(" ", $post);
 
 		if(!$this->check_requirements())
 		{
@@ -157,8 +157,8 @@ class Downloader
 			shell_exec("kill ".$p);
 		}
 
-                $fh = new FileHandler();
-                $folder = $fh->get_downloads_folder();
+		$fh = new FileHandler();
+		$folder = $fh->get_downloads_folder();
 
 		foreach(glob($folder.'*.part') as $file)
 		{
