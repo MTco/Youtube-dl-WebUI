@@ -260,7 +260,7 @@ class Downloader
 	private function do_download($audio_only)
 	{
 		$cmd = "youtube-dl";
-		$cmd .= " -o ".$this->download_path."/";
+		$cmd .= " --ignore-error -o ".$this->download_path."/";
 		$cmd .= escapeshellarg($this->outfilename);
 		
 		if ($this->vformat) 
@@ -272,13 +272,11 @@ class Downloader
 		{
 			$cmd .= " -x ";
 		}
-
+		$cmd .= " --restrict-filenames"; // --restrict-filenames is for specials chars
 		foreach($this->urls as $url)
 		{
 			$cmd .= " ".escapeshellarg($url);
 		}
-
-		$cmd .= " --restrict-filenames"; // --restrict-filenames is for specials chars
 		if($this->config["log"])
 		{
 			$cmd .= " > ".$this->log_path."/$(date  +\"%Y-%m-%d_%H-%M-%S-%N\").txt";
