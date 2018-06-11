@@ -279,13 +279,13 @@ class Downloader
 		}
 		if($this->config["log"])
 		{
+			$cmd = "{ echo Command: ".escapeshellarg($cmd)."; ".$cmd." }"
 			$cmd .= " > ".$this->log_path."/$(date  +\"%Y-%m-%d_%H-%M-%S-%N\").txt";
 		}
 		else
 		{
 			$cmd .= " > /dev/null ";
 		}
-		$cmd .= " & echo $!";
 
 		shell_exec($cmd);
 	}
