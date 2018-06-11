@@ -204,11 +204,11 @@ class Downloader
 		return $r;
 	}
 
-        private function is_python_installed()
-        {
-                exec("which python", $out, $r);
-                return $r;
-        }
+	private function is_python_installed()
+	{
+		exec("which python", $out, $r);
+		return $r;
+	}
 
 	private function is_valid_url($url)
 	{
