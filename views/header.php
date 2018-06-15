@@ -76,7 +76,7 @@
 					<?php
 						if($session->is_logged_in())
 						{
-							echo "<li><a href=\"./logout.php\">Logout</a></li>";
+							echo "<li><a href=\"./logout.php\">Logout  <span class=\"glyphicon glyphicon-log-out\"></span></a></li>";
 						}
 					?>
 				</ul>
