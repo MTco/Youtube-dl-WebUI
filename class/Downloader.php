@@ -287,6 +287,8 @@ class Downloader
 			$cmd .= " > /dev/null ";
 		}
 
+		$cmd .= " & echo $!"; 
+
 		shell_exec($cmd);
 	}
 
