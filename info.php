@@ -14,11 +14,6 @@
 	}
 	else
 	{
-		if(isset($_GET['kill']) && !empty($_GET['kill']) && $_GET['kill'] === "all")
-		{
-			Downloader::kill_them_all();
-		}
-
 		$json = False;
 
 		if(isset($_POST['urls']) && !empty($_POST['urls']))

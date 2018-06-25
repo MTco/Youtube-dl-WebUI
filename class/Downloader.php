@@ -306,7 +306,12 @@ class Downloader
 			$cmd .= " | python -m json.tool";
 		}
 
-		return shell_exec($cmd);
+		$soutput = shell_exec($cmd);
+		if (!$soutput)
+		{
+			$this->errors[] = "No video found";
+		}
+		return $soutput;
 
 	}
 }
