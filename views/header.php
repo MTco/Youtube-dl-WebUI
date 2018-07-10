@@ -23,14 +23,14 @@
 					<?php
 						if($session->is_logged_in() && isset($file))
 					{
-						echo '					<li><a href="./">Download</a></li>';
-                                                echo '                                  <li><a href="./info.php">JSON Info</a></li>';
+						echo '					<li><a href="./"><span class="glyphicon glyphicon-cloud-download"></span> Download</a></li>';
+						echo '					<li><a href="./info.php"><span class="glyphicon glyphicon-info-sign"></span> JSON Info</a></li>';
 						// List of files
 						$filesCount = count($file->listFiles());
 						if ($filesCount < 1) {
-							echo '					<li><a href="./list.php">List of files</a></li>';
+							echo '					<li><a href="./list.php"><span class="glyphicon glyphicon-list"></span> List of files</a></li>';
 						} else {
-							echo '					<li><a href="./list.php"><b>List of files</b> ('.($filesCount).')</a></li>';
+							echo '					<li><a href="./list.php"><span class="glyphicon glyphicon-list"></span> <b>List of files</b> ('.($filesCount).')</a></li>';
 						}
 						unset($filesCount);
 						
@@ -38,9 +38,9 @@
 						if ($file->is_log_enabled()) {
 							$filesCount = $file->countLogs();
 							if ($filesCount < 1) {
-								echo '					<li><a href="./logs.php">Logs</a></li>';
+								echo '					<li><a href="./logs.php"><span class="glyphicon glyphicon-notes"></span> Logs</a></li>';
 							} else {
-								echo '					<li><a href="./logs.php"><b>Logs</b> ('.($filesCount).')</a></li>';
+								echo '					<li><a href="./logs.php"><span class="glyphicon glyphicon-notes"></span> <b>Logs</b> ('.($filesCount).')</a></li>';
 							}
 							unset($filesCount);
 						}
@@ -76,7 +76,7 @@
 					<?php
 						if($session->is_logged_in())
 						{
-							echo "<li><a href=\"./logout.php\">Logout  <span class=\"glyphicon glyphicon-log-out\"></span></a></li>";
+							echo '<li><a href="./logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
 						}
 					?>
 				</ul>
