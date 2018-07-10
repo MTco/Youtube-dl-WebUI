@@ -38,9 +38,9 @@
 						if ($file->is_log_enabled()) {
 							$filesCount = $file->countLogs();
 							if ($filesCount < 1) {
-								echo '					<li><a href="./logs.php"><span class="glyphicon glyphicon-notes"></span> Logs</a></li>';
+								echo '					<li><a href="./logs.php"><span class="glyphicon glyphicon-book"></span> Logs</a></li>';
 							} else {
-								echo '					<li><a href="./logs.php"><span class="glyphicon glyphicon-notes"></span> <b>Logs</b> ('.($filesCount).')</a></li>';
+								echo '					<li><a href="./logs.php"><span class="glyphicon glyphicon-book"></span> <b>Logs</b> ('.($filesCount).')</a></li>';
 							}
 							unset($filesCount);
 						}
