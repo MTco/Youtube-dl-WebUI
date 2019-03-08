@@ -109,7 +109,7 @@ class Downloader
 
 	public static function background_jobs()
 	{
-		return shell_exec("ps aux | grep -v grep | grep -v \"youtube-dl -U\" | grep youtube-dl | wc -l");
+		return shell_exec("ps aux | grep -v grep | grep -v \"youtube-dl -U\" | grep \"youtube-dl \" | wc -l");
 	}
 
 	public static function max_background_jobs()
@@ -120,7 +120,7 @@ class Downloader
 
 	public static function get_current_background_jobs()
 	{
-		exec("ps -A -o user,pid,etime,cmd | grep -v grep | grep -v \"youtube-dl -U\" | grep youtube-dl", $output);
+		exec("ps -A -o user,pid,etime,cmd | grep -v grep | grep -v \"youtube-dl -U\" | grep \"youtube-dl \"", $output);
 
 		$bjs = [];
 
@@ -147,10 +147,12 @@ class Downloader
 
 	public static function kill_them_all()
 	{
-		exec("ps -A -o pid,cmd | grep -v grep | grep youtube-dl | awk '{print $1}'", $output);
+		exec("ps -A -o pid,cmd | grep -v grep | grep -v \"youtube-dl -U\" | grep \"youtube-dl \" | awk '{print $1}'", $output);
 
 		if(count($output) <= 0)
+		{
 			return;
+		}
 
 		foreach($output as $p)
 		{
