@@ -43,6 +43,13 @@
 				</div>
 			<div class="col-lg-4"></div>
 		</div>
+		<div class="form-group">
+			<div class="col-lg-4"></div>
+			<div class="col-lg-4">
+				<button type="submit" class="btn btn-primary">Sign in</button>
+			</div>
+		<div class="col-lg-4"></div>
+		</div>
 	</form>
 </div><!-- End container -->
 <?php require 'views/footer.php'; ?>
