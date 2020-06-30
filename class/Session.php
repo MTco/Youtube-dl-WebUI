@@ -8,13 +8,24 @@ class Session
 
 	public function __construct()
 	{
-		session_start();
-		
 		if (!file_exists(dirname(__DIR__).'/config/config.php')) {
 			copy(dirname(__DIR__).'/config/config.php.TEMPLATE', dirname(__DIR__).'/config/config.php');
 		}
 
 		$this->config = require dirname(__DIR__).'/config/config.php';
+		$session_expire = min(2147483647 - time() - 1, max($this->config["log"]["session_lifetime"], 86400));
+		$session_name = "ydlw_sid";
+
+		if ((!empty($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] != 'off')) || $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+			ini_set("session.cookie_secure", true);
+		}
+
+		ini_set("session.gc_probability", 75);
+		ini_set("session.name", $session_name);
+		ini_set("session.use_only_cookies", true);
+		ini_set("session.gc_maxlifetime", $session_expire);
+		ini_set("session.cookie_lifetime", min(0, $this->config["log"]["session_lifetime"]));
+		session_start();
 
 		if($this->config["security"])
 		{
