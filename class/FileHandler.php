@@ -3,7 +3,7 @@
 class FileHandler
 {
 	private $config = [];
-	private $re_partial = '/\.part(?:-Frag\d+)?$/';
+	private $re_partial = '/(?:\.part(?:-Frag\d+)?|\.ytdl)$/m';
 
 	public function __construct()
 	{
