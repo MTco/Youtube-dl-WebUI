@@ -121,6 +121,7 @@ class Downloader
 
 	public static function get_current_background_jobs()
 	{
+		$config = require dirname(__DIR__).'/config/config.php';
 		exec("ps -A -o user,pid,etime,cmd | grep -v grep | grep -v \"".$config["bin"]." -U\" | grep \"".$config["bin"]." \"", $output);
 
 		$bjs = [];
@@ -148,6 +149,7 @@ class Downloader
 
 	public static function kill_them_all()
 	{
+		$config = require dirname(__DIR__).'/config/config.php';
 		exec("ps -A -o pid,cmd | grep -v grep | grep -v \"".$config["bin"]." -U\" | grep \"".$config["bin"]." \" | awk '{print $1}'", $output);
 
 		if(count($output) <= 0)
@@ -173,7 +175,7 @@ class Downloader
 	{
 		if($this->is_youtubedl_installed() !== true)
 		{
-			$this->errors[] = "Binary not found in <pre>".$config["bin"]."</pre>, see <a href='https://github.com/yt-dlp/yt-dlp'>yt-dlp site</a> !";
+			$this->errors[] = "Binary not found in <pre>".$this->config["bin"]."</pre>, see <a href='https://github.com/yt-dlp/yt-dlp'>yt-dlp site</a> !";
 		}
 
 		$this->check_outuput_folder();
@@ -197,11 +199,12 @@ class Downloader
 
 	private function is_youtubedl_installed()
 	{
-		return is_executable($config["bin"]);
+		return is_executable($this->config["bin"]);
 	}
 
 	public static function get_youtubedl_version()
 	{
+		$config = require dirname(__DIR__).'/config/config.php';
 		$soutput = shell_exec($config["bin"]." --version");
 		return trim($soutput);
 	}
@@ -267,7 +270,7 @@ class Downloader
 
 	private function do_download($audio_only)
 	{
-		$cmd = $config["bin"];
+		$cmd = $this->config["bin"];
 		$cmd .= " --ignore-error -o ".$this->download_path."/";
 		$cmd .= escapeshellarg($this->outfilename);
 		
@@ -302,7 +305,7 @@ class Downloader
 
 	private function do_info()
 	{
-		$cmd = $config["bin"]." -J ";
+		$cmd = $this->config["bin"]." -J ";
 
 		foreach($this->urls as $url)
 		{
