@@ -4,10 +4,11 @@
 //No "/" at the end of outputFolder or logfolder
 
 return array(
+	"bin" => "/usr/local/bin/yt-dlp",
 	"security" => true,
 	"password" => "63a9f0ea7bb98050796b649e85481845",
 	"outputFolder" => "downloads",
-	"extracter" => "avconv",
+	"extracter" => "ffmpeg",
 	"log" => true,
 	"outfilename" => "%(title)s-%(id)s.%(ext)s",
 	"logFolder" => "logs",

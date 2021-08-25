@@ -109,7 +109,8 @@ class Downloader
 
 	public static function background_jobs()
 	{
-		return shell_exec("ps aux | grep -v grep | grep -v \"youtube-dl -U\" | grep \"youtube-dl \" | wc -l");
+		$config = require dirname(__DIR__).'/config/config.php';
+		return shell_exec("ps aux | grep -v grep | grep -v \"".$config["bin"]." -U\" | grep \"".$config["bin"]." \" | wc -l");
 	}
 
 	public static function max_background_jobs()
@@ -120,7 +121,7 @@ class Downloader
 
 	public static function get_current_background_jobs()
 	{
-		exec("ps -A -o user,pid,etime,cmd | grep -v grep | grep -v \"youtube-dl -U\" | grep \"youtube-dl \"", $output);
+		exec("ps -A -o user,pid,etime,cmd | grep -v grep | grep -v \"".$config["bin"]." -U\" | grep \"".$config["bin"]." \"", $output);
 
 		$bjs = [];
 
@@ -147,7 +148,7 @@ class Downloader
 
 	public static function kill_them_all()
 	{
-		exec("ps -A -o pid,cmd | grep -v grep | grep -v \"youtube-dl -U\" | grep \"youtube-dl \" | awk '{print $1}'", $output);
+		exec("ps -A -o pid,cmd | grep -v grep | grep -v \"".$config["bin"]." -U\" | grep \"".$config["bin"]." \" | awk '{print $1}'", $output);
 
 		if(count($output) <= 0)
 		{
@@ -170,9 +171,9 @@ class Downloader
 
 	private function check_requirements($audio_only=False)
 	{
-		if($this->is_youtubedl_installed() != 0)
+		if($this->is_youtubedl_installed() !== true)
 		{
-			$this->errors[] = "Youtube-dl is not installed, see <a href='https://rg3.github.io/youtube-dl/download.html'>Youtube-dl site</a> !";
+			$this->errors[] = "Binary not found in <pre>".$config["bin"]."</pre>, see <a href='https://github.com/yt-dlp/yt-dlp'>yt-dlp site</a> !";
 		}
 
 		$this->check_outuput_folder();
@@ -181,7 +182,7 @@ class Downloader
 		{
 			if($this->is_extracter_installed() != 0)
 			{
-				$this->errors[] = "Install an audio extracter (ex: avconv or ffmpeg) !";
+				$this->errors[] = "Install an audio extracter (ex: ffmpeg) !";
 			}
 		}
 
@@ -196,13 +197,12 @@ class Downloader
 
 	private function is_youtubedl_installed()
 	{
-		exec("which youtube-dl", $out, $r);
-		return $r;
+		return is_executable($config["bin"]);
 	}
 
 	public static function get_youtubedl_version()
 	{
-		$soutput = shell_exec("youtube-dl --version");
+		$soutput = shell_exec($config["bin"]." --version");
 		return trim($soutput);
 	}
 
@@ -267,7 +267,7 @@ class Downloader
 
 	private function do_download($audio_only)
 	{
-		$cmd = "youtube-dl";
+		$cmd = $config["bin"];
 		$cmd .= " --ignore-error -o ".$this->download_path."/";
 		$cmd .= escapeshellarg($this->outfilename);
 		
@@ -302,7 +302,7 @@ class Downloader
 
 	private function do_info()
 	{
-		$cmd = "youtube-dl -J ";
+		$cmd = $config["bin"]." -J ";
 
 		foreach($this->urls as $url)
 		{
