@@ -173,9 +173,9 @@ class Downloader
 
 	private function check_requirements($audio_only=False)
 	{
-		if($this->is_youtubedl_installed() !== true)
+		if($this->is_youtubedl_installed() != 0)
 		{
-			$this->errors[] = "Binary not found in <pre>".$this->config["bin"]."</pre>, see <a href='https://github.com/yt-dlp/yt-dlp'>yt-dlp site</a> !";
+			$this->errors[] = "Binary not found in <code>".$this->config["bin"]."</code>, see <a href='https://github.com/yt-dlp/yt-dlp'>yt-dlp site</a> !";
 		}
 
 		$this->check_outuput_folder();
@@ -199,7 +199,8 @@ class Downloader
 
 	private function is_youtubedl_installed()
 	{
-		return is_executable($this->config["bin"]);
+		exec("which ".$this->config["bin"], $out, $r);
+		return $r;
 	}
 
 	public static function get_youtubedl_version()
