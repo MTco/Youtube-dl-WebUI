@@ -4,60 +4,63 @@
 ![List](https://github.com/timendum/Youtube-dl-WebUI/raw/master/img/list.png)
 
 ## Description
-Youtube-dl WebUI is a small web interface for youtube-dl. It allows you to host your own video downloader. 
-After the download you can stream your videos from your web browser or save it on your computer directly from the list page.
-It supports simultaneous downloads in background.
+Youtube-dl WebUI is a small web interface for youtube-dl/yt-dlp. It allows you to host your own video downloader. 
+After the download you can stream your videos from your web browser (or VLC or others)
+or save it on your computer directly from the list page.
+
+It supports:
+
+* simultaneous downloads in background
+* yt-dlp, youtube-dl (and others)
+* logging
+* fetch info without download
 
 ### You can now extract the audio of a video and download multiple videos at the same time !
 
 ## Requirements
 - A web server (Apache or nginx) on Unix system.
-- PHP latest version should be fine.
-- Python 2.7 for Youtube-dl.
-- [Youtube-dl](https://github.com/rg3/youtube-dl).
-- avconv or ffmpeg is required for audio extraction (from youtube-dl doc) :
+- PHP >= 7 version should be fine.
+- Python >= 2.7 for Youtube-dl.
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp) or [Youtube-dl](https://github.com/rg3/youtube-dl).
+- ffmpeg (or avconv) is required for audio extraction (from youtube-dl doc) :
 `-x, --extract-audio convert video files to audio-only files (requires ffmpeg or avconv and ffprobe or avprobe)`
 
 ## How to install ?
-1. Clone this repo in your web folder (ex: /var/www).
-1. Copy `config/config.php.TEMPLATE` to  `config/config.php` and edit it as you like ([change password](#set-a-password)).
-1. Check permissions.
+1. Clone this repo in your web folder (ex: `/var/www`).
+1. Copy `config/config.php.TEMPLATE` to  `config/config.php` and edit it as you like ([set binary](#set-binary), [change password](#set-a-password)).
+1. Check folders permissions (www-data user must be able to write in the download and log folders).
 1. Load index.php to check that everything works.
 
-## Set a password
+## Set binary
 1. Open `config/config.php`.
-2. Set security to true.
-3. Find a password, hash it with md5 and replace the value of password.
-
-Example (chosen password is root):
-
-```
-echo -n root|md5sum| sed 's/ .*//'
-# Returns the hash 63a9f0ea7bb98050796b649e85481845
-```
-1. Clone this repo in your web folder (ex: /var/www).
-1. Copy `config/config.php.TEMPLATE` to  `config/config.php` and edit it as you like ([change password](#set-a-password)).
-1. Check permissions.
-1. Load index.php to check that everything works.
+1. Set `bin` to the path of yt-dlp or youtube-dl instance (es: `/usr/local/bin/yt-dlp`).
 
 ## Set a password
 1. Open `config/config.php`.
 1. Set `security` to `true`.
-1. Find a password, hash it with md5 and replace the value of password.
+1. Find a password, hash it with md5 and replace the value of `password` element.
 
-Example (chosen password is root):
+Example (chosen password is `foo`):
 
 ```
-echo -n root|md5sum| sed 's/ .*//'
-# Returns the hash 63a9f0ea7bb98050796b649e85481845
+echo -n foo | md5sum | sed 's/ .*//'
+# Returns the hash acbd18db4cc2f85cedef654fccc4a4d8
 ```
+
+## Set logging
+If you want to check the download process, enable logging with these instructions:
+
+1. Open `config/config.php`.
+1. Set `log` to `true`.
+1. Check the `logFolder` value.
+
 
 ## CSS Theme
 [Lumen](https://bootswatch.com/lumen/)
 
 ## License
 
-Copyright (c) 2018 Timendum
+Copyright (c) 2018-2021 Timendum
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
