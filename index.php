@@ -11,6 +11,7 @@
 	if(!$session->is_logged_in())
 	{
 		header("Location: login.php");
+		exit;
 	}
 	else
 	{
@@ -45,6 +46,7 @@
 			if(!isset($_SESSION['errors']))
 			{
 				header("Location: index.php");
+				exit;
 			}
 		}
 	}

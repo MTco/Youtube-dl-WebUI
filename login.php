@@ -10,6 +10,7 @@
 		if($session->login($_POST["password"]))
 		{
 			header("Location: index.php");
+			exit;
 		}
 		else
 		{

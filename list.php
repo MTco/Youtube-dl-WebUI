@@ -9,12 +9,14 @@
 	if(!$session->is_logged_in())
 	{
 		header("Location: login.php");
+		exit;
 	}
 
 	if($session->is_logged_in() && isset($_GET["delete"]))
 	{
 		$file->delete($_GET["delete"]);
 		header("Location: list.php");
+		exit;
 	}
 
 	$files = $file->listFiles();
