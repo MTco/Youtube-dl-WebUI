@@ -1,9 +1,8 @@
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript">
-		$(document).ready(function() {
-    		$("#url").focus();
-		});
+                document.addEventListener("DOMContentLoaded", function() {
+                        document.getElementById('url').focus();
+                });
         </script>
     </body>
 </html>
