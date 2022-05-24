@@ -62,10 +62,12 @@
 								}
 
 							?>
+							</div>
 						</li>
 					<?php
 						}
 					?>
+					</ul>
 				</div>
 				<ul class="navbar-nav mr-auto justify-content-end">
 					<?php
