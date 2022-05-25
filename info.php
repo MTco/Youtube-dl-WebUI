@@ -24,7 +24,7 @@
 		}
 	}
 ?>
-		<div class="container">
+		<div class="container mt-5">
 			<h1>JSON Info</h1>
 			<?php
 
