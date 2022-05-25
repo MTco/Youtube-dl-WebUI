@@ -68,7 +68,7 @@
 								{
 									foreach(Downloader::get_current_background_jobs() as $key)
 									{
-										echo "									<li><a class=\"dropdown-item\" href=\"#\" title=\"".htmlspecialchars($key['cmd'])."\">Elapsed time : ".$key['time']."</a></li>";
+										echo "									<li><span class=\"dropdown-item\" title=\"".htmlspecialchars($key['cmd'])."\">Elapsed time : ".$key['time']."</span></li>";
 									}
 
 									echo "									<li><hr class=\"dropdown-divider\"></li>";
@@ -76,7 +76,7 @@
 								}
 								else
 								{
-									echo "									<li><a class=\"dropdown-item\">No jobs !</a></li>";
+									echo "									<li><a class=\"dropdown-item disabled\">No jobs !</a></li>";
 								}
 
 							?>
