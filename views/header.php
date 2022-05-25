@@ -76,7 +76,7 @@
 								}
 								else
 								{
-									echo "a class=\"dropdown-item\">No jobs !</a>";
+									echo "<a class=\"dropdown-item\">No jobs !</a>";
 								}
 
 							?>
