@@ -4,7 +4,8 @@
 
         <script type="text/javascript">
                 document.addEventListener("DOMContentLoaded", function() {
-                        document.getElementById('url').focus();
+                        const urlF = document.getElementById('url');
+			if (urlF) {urlF.focus();}
                 });
         </script>
 
