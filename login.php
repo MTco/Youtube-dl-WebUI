@@ -32,7 +32,7 @@
 	<div class="row my-3">
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
-			<h2>Login :</h2>
+			<h2>Login:</h2>
 		</div>
 		<div class="col-md-4"></div>
 	</div>
