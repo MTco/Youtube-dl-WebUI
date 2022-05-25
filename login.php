@@ -37,19 +37,19 @@
 		<div class="col-md-4"></div>
 	</div>
 	<form class="form-horizontal" action="login.php" method="POST">
-		<div class="form-group">
+		<div class="input-group">
 			<div class="col-lg-4"></div>
 				<div class="col-lg-4">
-					<input class="form-control" id="password" name="password" placeholder="Password" type="password">
+					<input class="form-control" id="password" name="password" placeholder="Password" type="password" />
 				</div>
 			<div class="col-lg-4"></div>
 		</div>
-		<div class="form-group">
+		<div class="input-group">
 			<div class="col-lg-4"></div>
 			<div class="col-lg-4">
 				<button type="submit" class="btn btn-primary">Sign in</button>
 			</div>
-		<div class="col-lg-4"></div>
+			<div class="col-lg-4"></div>
 		</div>
 	</form>
 </div><!-- End container -->
