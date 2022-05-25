@@ -72,10 +72,10 @@
 					</div>
 				</div>
 				<div class="row mt-3 align-items-center">
-					<div class="col-auto">
+					<div class="col-auto my-1">
 						<button type="submit" class="btn btn-primary">Download</button>
 					</div>
-					<div class="col-auto">
+					<div class="col-auto my-1">
 						<div class="input-group">
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox" id="audioCheck" name="audio"/>
@@ -83,13 +83,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-auto">
+					<div class="col-auto my-1">
 						<div class="input-group">
 							<span class="input-group-text" id="outfilename-addon">Filename:</span>
 							<input class="form-control" id="outfilename" name="outfilename" placeholder="Output filename template" type="text" aria-describedby="outfilename-addon">
 						</div>
 					</div>
-					<div class="col-auto">
+					<div class="col-auto my-1">
 						<div class="input-group">
 							<span class="input-group-text" id="vformat-addon">Format:</span>
 							<input class="form-control" id="vformat" name="vformat" placeholder="Video format code" type="text" aria-describedby="vformat-addon" />
