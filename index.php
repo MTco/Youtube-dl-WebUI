@@ -51,7 +51,7 @@
 
 	require 'views/header.php';
 ?>
-		<div class="container mt-4">
+		<div class="container my-4">
 			<h1>Download</h1>
 			<?php
 
