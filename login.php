@@ -52,5 +52,5 @@
 			<div class="col-lg-4"></div>
 		</div>
 	</form>
-</div><!-- End container -->
+</div>
 <?php require 'views/footer.php'; ?>
